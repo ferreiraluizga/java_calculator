@@ -7,3 +7,6 @@ Calculadora feita em Java com uso do JFrame
 - Execute o arquivo Calculadora.java (src/calculadora/Calculadora.java)
 
 ![Print do Funcionamento da Calculadora](funcionamentoCalculadora.png)
+
+## Notas de Versão
+- v2: correção na caixa de texto para exibir e na lógica da divisão

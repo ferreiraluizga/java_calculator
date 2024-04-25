@@ -62,7 +62,7 @@ public class Calculadora extends JFrame{
         //texto de resultado e sua estilzação
         exibir = new JLabel("");
         exibir.setForeground(Color.BLACK);
-        exibir.setFont(new Font("Arial", Font.BOLD, 16));
+        exibir.setFont(new Font("Arial", Font.BOLD, 14));
         
         //posicionamento dos elementos
         titulo.setBounds(65, 20, 150, 20);
@@ -129,18 +129,15 @@ public class Calculadora extends JFrame{
         dividir.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        int numero1, numero2, divisao;
-                        numero1 = Integer.parseInt(texto1.getText());
-                        numero2 = Integer.parseInt(texto2.getText());
+                        double numero1, numero2, divisao;
+                        numero1 = Double.parseDouble(texto1.getText());
+                        numero2 = Double.parseDouble(texto2.getText());
                         exibir.setVisible(true);
                         if (numero2 != 0){
                             divisao = numero1 / numero2;
                             exibir.setText(texto1.getText() + " ÷ " 
                                     + texto2.getText() + " = " + divisao);
                         }else{
-                            //estilização específica para o texto de resultado
-                            exibir.setForeground(Color.BLACK);
-                            exibir.setFont(new Font("Arial", Font.BOLD, 12));
                             exibir.setText("Não é possivel dividir por 0");
                         }
                     }
