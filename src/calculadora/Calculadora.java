@@ -62,7 +62,7 @@ public class Calculadora extends JFrame{
         //texto de resultado e sua estilzação
         exibir = new JLabel("");
         exibir.setForeground(Color.BLACK);
-        exibir.setFont(new Font("Arial", Font.BOLD, 14));
+        exibir.setFont(new Font("Arial", Font.BOLD, 12));
         
         //posicionamento dos elementos
         titulo.setBounds(65, 20, 150, 20);
