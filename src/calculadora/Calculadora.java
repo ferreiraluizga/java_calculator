@@ -14,9 +14,9 @@ import java.awt.event.*;
 public class Calculadora extends JFrame{
     
     //elementos da tela
-    JLabel titulo, rotulo1, rotulo2, exibir;
+    JLabel titulo, rotulo1, rotulo2, resultado;
     JTextField texto1, texto2;
-    JButton somar, subtrair, multiplicar, dividir;
+    JButton somar, subtrair, multiplicar, dividir, limpar, ocultarComponente, exibirComponente;
     ImageIcon iconJanela, iconSomar, iconSubtrair, iconMultiplicar, iconDividir;
     
     //construtor
@@ -58,11 +58,18 @@ public class Calculadora extends JFrame{
                 
         iconDividir = new ImageIcon("img/dividir.png");
         dividir = new JButton(iconDividir);
+        
+        //definição do botão de limpar campos
+        limpar = new JButton("Limpar");
+        
+        //definição dos botões de ocultar e exibir
+        ocultarComponente = new JButton("Ocultar");
+        exibirComponente = new JButton("Exibir");
                 
         //texto de resultado e sua estilzação
-        exibir = new JLabel("");
-        exibir.setForeground(Color.BLACK);
-        exibir.setFont(new Font("Arial", Font.BOLD, 16));
+        resultado = new JLabel("");
+        resultado.setForeground(Color.BLACK);
+        resultado.setFont(new Font("Arial", Font.BOLD, 12));
         
         //posicionamento dos elementos
         titulo.setBounds(65, 20, 150, 20);
@@ -78,7 +85,11 @@ public class Calculadora extends JFrame{
         multiplicar.setBounds(120, 150, 30, 30);
         dividir.setBounds(160, 150, 30, 30);
         
-        exibir.setBounds(40, 200, 200, 20);
+        resultado.setBounds(40, 190, 200, 20);
+        
+        limpar.setBounds(40, 210, 150, 20);
+        ocultarComponente.setBounds(40, 230, 75, 20);
+        exibirComponente.setBounds(115, 230, 75, 20);
         
         //ação do botão de soma
         somar.addActionListener(
@@ -88,8 +99,8 @@ public class Calculadora extends JFrame{
                         numero1 = Integer.parseInt(texto1.getText());
                         numero2 = Integer.parseInt(texto2.getText());
                         soma = numero1 + numero2;
-                        exibir.setVisible(true);
-                        exibir.setText(texto1.getText() + " + " 
+                        resultado.setVisible(true);
+                        resultado.setText(texto1.getText() + " + " 
                                 + texto2.getText() + " = " + soma);
                     }
                 }
@@ -103,8 +114,8 @@ public class Calculadora extends JFrame{
                         numero1 = Integer.parseInt(texto1.getText());
                         numero2 = Integer.parseInt(texto2.getText());
                         subtracao = numero1 - numero2;
-                        exibir.setVisible(true);
-                        exibir.setText(texto1.getText() + " – " 
+                        resultado.setVisible(true);
+                        resultado.setText(texto1.getText() + " – " 
                                 + texto2.getText() + " = " + subtracao);
                     }
                 }
@@ -118,8 +129,8 @@ public class Calculadora extends JFrame{
                         numero1 = Integer.parseInt(texto1.getText());
                         numero2 = Integer.parseInt(texto2.getText());
                         multiplicacao = numero1 * numero2;
-                        exibir.setVisible(true);
-                        exibir.setText(texto1.getText() + " × " 
+                        resultado.setVisible(true);
+                        resultado.setText(texto1.getText() + " × " 
                                 + texto2.getText() + " = " + multiplicacao);
                     }
                 }
@@ -129,20 +140,46 @@ public class Calculadora extends JFrame{
         dividir.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        int numero1, numero2, divisao;
-                        numero1 = Integer.parseInt(texto1.getText());
-                        numero2 = Integer.parseInt(texto2.getText());
-                        exibir.setVisible(true);
+                        double numero1, numero2, divisao;
+                        numero1 = Double.parseDouble(texto1.getText());
+                        numero2 = Double.parseDouble(texto2.getText());
+                        resultado.setVisible(true);
                         if (numero2 != 0){
                             divisao = numero1 / numero2;
-                            exibir.setText(texto1.getText() + " ÷ " 
+                            resultado.setText(texto1.getText() + " ÷ " 
                                     + texto2.getText() + " = " + divisao);
                         }else{
-                            //estilização específica para o texto de resultado
-                            exibir.setForeground(Color.BLACK);
-                            exibir.setFont(new Font("Arial", Font.BOLD, 12));
-                            exibir.setText("Não é possivel dividir por 0");
+                            resultado.setText("Não é possivel dividir por 0");
                         }
+                    }
+                }
+        );
+        
+        //ação do botão de limpar
+        limpar.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        texto1.setText(null);
+                        texto2.setText(null);
+                        texto1.requestFocus();
+                    }
+                }
+        );
+        
+        //ação do botão de ocultar
+        ocultarComponente.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        texto1.setVisible(false);
+                        texto2.setVisible(false);
+                    }
+                }
+        );
+        exibirComponente.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        texto1.setVisible(true);
+                        texto2.setVisible(true);
                     }
                 }
         );
@@ -151,7 +188,7 @@ public class Calculadora extends JFrame{
         definição de visibilidade para que o texto de resultado apareça
         somente ao executar o botão
         */
-        exibir.setVisible(false);
+        resultado.setVisible(false);
         
         //adição dos elementos a tela
         tela.add(titulo);
@@ -159,11 +196,14 @@ public class Calculadora extends JFrame{
         tela.add(rotulo2);
         tela.add(texto1);
         tela.add(texto2);
-        tela.add(exibir);
+        tela.add(resultado);
         tela.add(somar);
         tela.add(subtrair);
         tela.add(multiplicar);
         tela.add(dividir);
+        tela.add(limpar);
+        tela.add(ocultarComponente);
+        tela.add(exibirComponente);
         
         //configurações de tamanho e visibilidade da tela
         setResizable(false);
