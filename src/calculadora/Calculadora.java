@@ -16,7 +16,7 @@ public class Calculadora extends JFrame{
     //elementos da tela
     JLabel titulo, rotulo1, rotulo2, resultado;
     JTextField texto1, texto2;
-    JButton somar, subtrair, multiplicar, dividir, limpar, ocultarComponente, exibirComponente;
+    JButton somar, subtrair, multiplicar, dividir, limpar, ocultarComponente, exibirComponente, habilitarComponente, desabilitarComponente;
     ImageIcon iconJanela, iconSomar, iconSubtrair, iconMultiplicar, iconDividir;
     
     //construtor
@@ -65,6 +65,10 @@ public class Calculadora extends JFrame{
         //definição dos botões de ocultar e exibir
         ocultarComponente = new JButton("Ocultar");
         exibirComponente = new JButton("Exibir");
+        
+        //definição dos botões de habilitar e desabilitar campos
+        habilitarComponente = new JButton("Habilitar");
+        desabilitarComponente = new JButton("Desabilitar");
                 
         //texto de resultado e sua estilzação
         resultado = new JLabel("");
@@ -85,11 +89,13 @@ public class Calculadora extends JFrame{
         multiplicar.setBounds(120, 150, 30, 30);
         dividir.setBounds(160, 150, 30, 30);
         
-        resultado.setBounds(40, 190, 200, 20);
+        resultado.setBounds(40, 200, 200, 20);
         
-        limpar.setBounds(40, 210, 150, 20);
-        ocultarComponente.setBounds(40, 230, 75, 20);
-        exibirComponente.setBounds(115, 230, 75, 20);
+        limpar.setBounds(40, 230, 150, 20);
+        ocultarComponente.setBounds(40, 255, 150, 20);
+        exibirComponente.setBounds(40, 275, 150, 20);
+        habilitarComponente.setBounds(40, 300, 150, 20);
+        desabilitarComponente.setBounds(40, 320, 150, 20);
         
         //ação do botão de soma
         somar.addActionListener(
@@ -166,7 +172,7 @@ public class Calculadora extends JFrame{
                 }
         );
         
-        //ação do botão de ocultar
+        //ação do botão de ocultar e exibir
         ocultarComponente.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
@@ -180,6 +186,24 @@ public class Calculadora extends JFrame{
                     public void actionPerformed(ActionEvent e){
                         texto1.setVisible(true);
                         texto2.setVisible(true);
+                    }
+                }
+        );
+        
+        //ação do botão de habilitar e desabilitar
+        desabilitarComponente.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        texto1.setEnabled(false);
+                        texto2.setEnabled(false);
+                    }
+                }
+        );
+        habilitarComponente.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        texto1.setEnabled(true);
+                        texto2.setEnabled(true);
                     }
                 }
         );
@@ -204,10 +228,12 @@ public class Calculadora extends JFrame{
         tela.add(limpar);
         tela.add(ocultarComponente);
         tela.add(exibirComponente);
+        tela.add(habilitarComponente);
+        tela.add(desabilitarComponente);
         
         //configurações de tamanho e visibilidade da tela
         setResizable(false);
-        setSize(250, 300);
+        setSize(250, 400);
         setVisible(true);
         setLocationRelativeTo(null);
     }

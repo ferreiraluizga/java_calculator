@@ -10,3 +10,4 @@ Calculadora feita em Java com uso do JFrame
 
 ## Notas de Versão
 - v2: correção na caixa de texto para exibir e na lógica da divisão
+- v3: adição de botões para limpar, ocultar, exibir, habilitar e desabilitar campos
